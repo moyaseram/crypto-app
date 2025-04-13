@@ -1,27 +1,32 @@
 import chrtUp from "../../assets/chart-up.svg";
 import chrtDown from "../../assets/chart-down.svg";
+import MoonLoader from "react-spinners/MoonLoader";
 
-const TableCoin = ({ coins }) => {
+const TableCoin = ({ coins, isLoading }) => {
   console.log(coins);
   return (
     <div>
-      <table>
-        <thead>
-          <tr>
-            <th>Coin</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>24</th>
-            <th>Total Volume</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {coins.map((coin) => (
-            <TableRow coin={coin} key={coin.id} />
-          ))}
-        </tbody>
-      </table>
+      {isLoading ? (
+        <MoonLoader color="#3874ff" speedMultiplier={0.7} />
+      ) : (
+        <table>
+          <thead>
+            <tr>
+              <th>Coin</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>24</th>
+              <th>Total Volume</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {coins.map((coin) => (
+              <TableRow coin={coin} key={coin.id} />
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };
